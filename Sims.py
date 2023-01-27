@@ -7,10 +7,14 @@ class Human:
         self.car = car
         self.money = 100
         self.gladness = 50
+        self.pet = pet
     def get_home(self):
         self.home=House()
     def get_car(self):
-        self.car=Auto(brends_of_car)
+        self.car=Auto(brand_list)
+
+    def get_pet(self):
+        self.pet=pet
 
     def get_job(self):
         if self.car.drive():
@@ -18,7 +22,7 @@ class Human:
         else:
             self.to_repair()
             return
-        self.job=Job(job_list)
+        self.job=job(get_job)
     def eat(self):
         if self.home.food<=0:
             self.shopping("food")
@@ -59,6 +63,10 @@ class Human:
                 print("купити їжу")
                 self.money-=50
                 self.home.food+=50
+            elif manage=="feed":
+                print("купити корм домашній тварині")
+                self.money-=70
+                self.pet+=70
             elif manage=="deliciuos":
                 print("Ура! Смаколики!")
                 self.money-=15
@@ -66,11 +74,11 @@ class Human:
                 self.satiety+=2
 
     def chill(self):
-        self.gladness+=10
+        self.gladness+=15
         self.home.mess+=5
 
     def clean_home(self):
-        self.gladness-=5
+        self.gladness-=10
         self.home.mess=0
 
     def to_repair(self):
@@ -145,6 +153,9 @@ class Human:
              print("час прибирання")
              self.clean_home()
         elif dece==4:
+            print("час погратись з домашньою твариною")
+            self.pet
+        elif dece==5:
              print("час смачненького")
              self.shopping(manage="delicacies")
 
@@ -170,6 +181,10 @@ class Auto:
          return False
 class House:
     def __init__(self):
+        self.mess=0
+        self.food=0
+class pet:
+    def __init__(self,pet_feed):
         self.mess=0
         self.food=0
 class Jod:
